@@ -8,7 +8,7 @@ from explainability_dl import integrated_gradients, preprocess_image
 # Load the deep learning model
 @st.cache_resource
 def load_deep_learning_model():
-    return tf.keras.models.load_model("final_hybrid_model.h5")
+    return tf.keras.models.load_model("dl-model.h5")
 
 dnn_model = load_deep_learning_model()
 
