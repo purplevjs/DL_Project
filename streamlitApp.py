@@ -4,11 +4,12 @@ import numpy as np
 from PIL import Image
 import cv2
 from explainability_dl import integrated_gradients, preprocess_image
+from non_dl_model import non_dl_predict  # Import non-deep learning model
 
 # Load the deep learning model
 @st.cache_resource
 def load_deep_learning_model():
-    return tf.keras.models.load_model("dl-model.h5")
+    return tf.keras.models.load_model("final_hybrid_model.h5")
 
 dnn_model = load_deep_learning_model()
 
@@ -23,9 +24,8 @@ def explain_prediction(image):
     return ig_map
 
 def non_deep_learning_predict(image):
-    # Placeholder for non-deep learning method
-    # Example: Using traditional image processing techniques
-    return np.random.choice([0, 1])  # Replace with actual implementation
+    processed_image = preprocess_image(image)
+    return non_dl_predict(processed_image)  # Utilize the non-deep learning model
 
 # Streamlit App
 st.title("Cancer Detection from Image")
